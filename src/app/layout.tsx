@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import MainNav from "@/components/main-nav";
+import Header from "@/components/header";
 import "@/styles/globals.css";
 export const metadata: Metadata = {
   title: "Navin Kumar",
@@ -27,7 +28,12 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto">
               <div className="min-h-screen flex">
                 <MainNav />
-                {children}
+                <main className="grow overflow-hidden px-6">
+                  <div className="w-full h-full max-w-[1072px] mx-auto flex flex-col">
+                    <Header />
+                    {children}
+                  </div>
+                </main>
               </div>
             </div>
           </ThemeProvider>

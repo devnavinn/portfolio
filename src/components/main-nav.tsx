@@ -38,11 +38,11 @@ const MainNav = () => {
               {links.map(({ href, icon: Icon }) => (
                 <li key={href} className="md:py-2">
                   <Link
-                    className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400
+                    className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 
                       ${
                         pathname === href
                           ? "text-blue-500 dark:text-blue-500"
-                          : ""
+                          : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
                       }
                       `}
                     href={href}
