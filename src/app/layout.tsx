@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
-
+import MainNav from "@/components/main-nav";
+import "@/styles/globals.css";
 export const metadata: Metadata = {
   title: "Navin Kumar",
   description:
@@ -23,7 +24,12 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <div className="max-w-7xl mx-auto">
+              <div className="min-h-screen flex">
+                <MainNav />
+                {children}
+              </div>
+            </div>
           </ThemeProvider>
         </body>
       </html>
