@@ -23,7 +23,7 @@ export default function Home() {
           />
         </div>
         <p className={`${lato.className} mb-2 text-xl `}>
-          Hi, I'm{" "}
+          Hi, {`I'm`}{" "}
           <span className="text-sky-500 after:bg-sky-500">Navin Kumar</span>
         </p>
         <h1
