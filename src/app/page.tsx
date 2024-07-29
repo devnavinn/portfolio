@@ -1,7 +1,9 @@
-import Header from "@/components/header";
 import Image from "next/image";
 import { PT_Sans } from "next/font/google";
 import Link from "next/link";
+import { projects } from "@/constant";
+import ProjectCard from "@/components/project-card";
+import { v4 as uuidv4 } from "uuid";
 import { LinkedinIcon, GithubIcon, MailIcon } from "lucide-react";
 const lato = PT_Sans({
   weight: ["400", "700"],
@@ -69,6 +71,14 @@ export default function Home() {
                   <MailIcon size={24} />
                 </Link>
               </li>
+              <h1 className={`${lato.className}  text-xl font-[650] mb-5`}>
+                Latest Projects
+              </h1>
+              <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5  ">
+                {projects?.map((d) => (
+                  <ProjectCard key={uuidv4()} data={d} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
