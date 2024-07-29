@@ -79,6 +79,14 @@ export default function Home() {
                   <ProjectCard key={uuidv4()} data={d} />
                 ))}
               </div>
+              <div>
+                See a list of all my projects{" "}
+                <span>
+                  <Link className="text-sky-500" href="/projects">
+                    On my projects page
+                  </Link>
+                </span>
+              </div>
             </div>
           </div>
         </div>
