@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import {
   HomeIcon,
   BadgeInfoIcon,
@@ -35,22 +36,32 @@ const MainNav = () => {
         <div className="flex-1 grow flex items-center w-full">
           <nav className="w-full">
             <ul className="md:space-y-4 flex flex-row items-center w-screen justify-evenly md:flex-col md:justify-start md:items-center md:w-24">
-              {links.map(({ href, icon: Icon }) => (
-                <li key={href} className="md:py-2">
-                  <Link
-                    className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 
-                      ${
-                        pathname === href
-                          ? "text-blue-500 dark:text-blue-500"
-                          : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
-                      }
-                      `}
-                    href={href}
-                  >
-                    <Icon size={24} />
-                  </Link>
-                </li>
-              ))}
+              {links.map(({ href, icon: Icon }) => {
+                const isActive = pathname === href;
+                return (
+                  <li key={href} className="md:py-2">
+                    <Link
+                      className={`w-10 h-10 flex items-center justify-center relative rounded-lg transition-colors duration-200
+                        ${
+                          isActive
+                            ? "text-blue-500 dark:text-blue-500"
+                            : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
+                        }
+                        `}
+                      href={href}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-active-pill"
+                          className="absolute inset-0 rounded-lg bg-blue-500/10"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                      <Icon size={24} className="relative z-10" />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

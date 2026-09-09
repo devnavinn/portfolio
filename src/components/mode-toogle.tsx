@@ -6,6 +6,11 @@ import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -18,7 +23,7 @@ export function ModeToggle() {
       size="icon"
       onClick={() => toggleTheme()}
     >
-      {theme === "dark" ? (
+      {mounted && theme === "dark" ? (
         <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 transition-all text-blue-500  " />
       ) : (
         <MoonStarIcon className="h-[1.2rem] w-[1.2rem]  transition-all " />
