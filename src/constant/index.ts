@@ -7,18 +7,17 @@ const projects = [
         tag: ['latest']
     },
     {
-        icon: '/projects/getreadylogo.jpg',
-        title: 'AutoGetReady',
-        description: 'Developed a SaaS platform for car dealers to manage inventory, sales. Implemented features like real-time inventory tracking. Built using modern web technologies for a user-friendly and efficient service',
-        url: 'https://www.autogetready.net/',
+        icon: '/projects/filego.png',
+        title: 'FileGo',
+        description: 'A web platform built with modern web technologies.',
+        url: 'https://www.filego.in/',
         tag: ['latest']
-
     },
     {
-        icon: '/projects/master-ai.png',
-        title: 'Master List Ai',
-        description: 'Created a platform for listing AI tools with advanced search filters and SEO optimization. Features include comprehensive tool descriptions, user reviews, and category-based navigation to enhance discoverability and user engagement.',
-        url: 'https://www.masterlistai.com/',
+        icon: '/projects/rydo.png',
+        title: 'Rydon',
+        description: 'A web platform built with modern web technologies.',
+        url: 'https://rydon-nine.vercel.app/',
         tag: ['latest']
     },
 
