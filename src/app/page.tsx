@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { projects } from "@/constant";
 import ProjectGrid from "@/components/project-grid";
-import { Button } from "@/components/ui/button";
 import {
   LinkedinIcon,
   GithubIcon,
@@ -115,20 +114,25 @@ export default function Home() {
           animate="show"
           variants={fadeUp}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap gap-3 mt-6"
+          className="flex flex-wrap gap-6 mt-6"
         >
-          <Button asChild>
-            <Link href="/resume">
-              <FileTextIcon size={16} className="mr-2" />
-              View Resume
-            </Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link href="/projects">
-              See Projects
-              <ArrowRightIcon size={16} className="ml-2" />
-            </Link>
-          </Button>
+          <Link
+            href="/resume"
+            className="group flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors"
+          >
+            <FileTextIcon size={16} />
+            View Resume
+          </Link>
+          <Link
+            href="/projects"
+            className="group flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors"
+          >
+            See Projects
+            <ArrowRightIcon
+              size={16}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </Link>
         </motion.div>
       </div>
 
