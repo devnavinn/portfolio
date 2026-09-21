@@ -8,6 +8,7 @@ import {
   BadgeInfoIcon,
   BriefcaseBusinessIcon,
   SquareMenuIcon,
+  PenLineIcon,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -15,6 +16,7 @@ const links = [
   { href: "/", icon: HomeIcon },
   { href: "/about", icon: BadgeInfoIcon },
   { href: "/projects", icon: BriefcaseBusinessIcon },
+  { href: "/blog", icon: PenLineIcon },
   { href: "/resume", icon: SquareMenuIcon },
 ];
 
@@ -37,7 +39,8 @@ const MainNav = () => {
           <nav className="w-full">
             <ul className="md:space-y-4 flex flex-row items-center w-screen justify-evenly md:flex-col md:justify-start md:items-center md:w-24">
               {links.map(({ href, icon: Icon }) => {
-                const isActive = pathname === href;
+                const isActive =
+                  pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
                 return (
                   <li key={href} className="md:py-2">
                     <Link

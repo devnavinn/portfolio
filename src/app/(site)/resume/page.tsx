@@ -55,7 +55,7 @@ const skillGroups = [
 ];
 
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="text-sm md:text-base font-extrabold uppercase tracking-wider text-slate-900 dark:text-slate-100 print:text-black pb-1.5 mb-4 border-b-2 border-slate-900 dark:border-slate-100 print:border-black">
+  <h2 className="text-sm md:text-base font-extrabold uppercase tracking-wider text-slate-900 dark:text-slate-100 print:text-black pb-1.5 mb-4 border-b border-slate-300 dark:border-slate-700 print:border-slate-400">
     {children}
   </h2>
 );
@@ -97,7 +97,7 @@ const Resume = () => {
                 <span className="text-sm">codernavin@gmail.com</span>
               </Link>
             </div>
-            <hr className="border-t-2 border-slate-900 dark:border-slate-100 print:border-black mt-5" />
+            <hr className="border-t border-slate-300 dark:border-slate-700 print:border-slate-400 mt-5" />
           </div>
 
           <section className="mb-8 print:break-inside-avoid">
