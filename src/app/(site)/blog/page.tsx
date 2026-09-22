@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { formatPostDate, readingTime } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Notes on software, web development, and the tools Navin Kumar uses building full-stack products.",
+  alternates: { canonical: "/blog" },
+};
 
 const Blog = async () => {
   const posts = await db.post.findMany({
@@ -16,7 +24,7 @@ const Blog = async () => {
   return (
     <div className="pt-8 pb-16 max-w-[700px]">
       <header className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
           Writing
         </h1>
         <p className="mt-2 text-slate-500 dark:text-slate-400">

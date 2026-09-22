@@ -1,3 +1,8 @@
+const WHATSAPP_NUMBER = "918581085293";
+
+const getWhatsAppLink = (message: string) =>
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
 const projects = [
     {
         icon: '/projects/x.png',
@@ -24,4 +29,4 @@ const projects = [
 ]
 
 
-export { projects }
+export { projects, WHATSAPP_NUMBER, getWhatsAppLink }

@@ -66,10 +66,10 @@ const Resume = () => {
       <div className="max-w-[830px] mx-auto text-slate-900 dark:text-slate-100 print:text-black overflow-hidden">
         <div className="py-8 md:py-10 print:py-6">
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-tight">
               Navin Kumar
             </h1>
-            <p className="text-lg md:text-xl font-bold uppercase tracking-wide text-slate-800 dark:text-slate-200 print:text-slate-800 mt-1">
+            <p className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-wide text-slate-800 dark:text-slate-200 print:text-slate-800 mt-1">
               Full Stack Developer
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-1 text-slate-600 dark:text-slate-400 print:text-slate-700 mt-3">

@@ -1,5 +1,6 @@
 import MainNav from "@/components/main-nav";
 import Header from "@/components/header";
+import WhatsAppFloat from "@/components/whatsapp-float";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,6 +18,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           </div>
         </main>
       </div>
+      <WhatsAppFloat />
     </div>
   );
 }

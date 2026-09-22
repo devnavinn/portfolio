@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import {
   Bike,
@@ -6,6 +7,13 @@ import {
   PenLine,
   Plane,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Get to know Navin Kumar — a full-stack developer building React, Next.js, and Node.js products, available for freelance web development work.",
+  alternates: { canonical: "/about" },
+};
 
 const interests = [
   {
@@ -55,7 +63,7 @@ const About = () => {
           />
         </div>
         <div className="max-w-[560px]">
-          <h1 className="text-3xl md:text-4xl font-semibold mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3">
             {"I'm"}{" "}
             <span className="text-sky-500">Navin Kumar</span>, a
             full-stack developer who{" "}
@@ -64,7 +72,7 @@ const About = () => {
             </span>{" "}
             things people actually use.
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400">
+          <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400">
             I work mainly with React, Next.js, Node.js, and MongoDB, and
             care about shipping things that work end to end — not just in
             a demo.
@@ -86,7 +94,7 @@ const About = () => {
         ))}
       </div>
 
-      <div className="max-w-[700px] space-y-4 text-lg text-slate-600 dark:text-slate-400 mb-12">
+      <div className="max-w-[700px] space-y-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-12">
         <p>
           I build everything from e-commerce platforms to SaaS tools, with
           an eye for clean UI and solid backend architecture. Whether{" "}
@@ -97,7 +105,7 @@ const About = () => {
       </div>
 
       <div>
-        <h2 className="text-xl font-semibold mb-5">Beyond Work</h2>
+        <h2 className="text-lg sm:text-xl font-semibold mb-5">Beyond Work</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {interests.map(({ icon: Icon, title, description }, i) => (
             <div

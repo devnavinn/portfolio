@@ -9,15 +9,19 @@ import {
   BriefcaseBusinessIcon,
   SquareMenuIcon,
   PenLineIcon,
+  SparklesIcon,
+  MessageCircleIcon,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const links = [
   { href: "/", icon: HomeIcon },
   { href: "/about", icon: BadgeInfoIcon },
+  { href: "/services", icon: SparklesIcon },
   { href: "/projects", icon: BriefcaseBusinessIcon },
   { href: "/blog", icon: PenLineIcon },
   { href: "/resume", icon: SquareMenuIcon },
+  { href: "/contact", icon: MessageCircleIcon },
 ];
 
 const MainNav = () => {
@@ -44,7 +48,7 @@ const MainNav = () => {
                 return (
                   <li key={href} className="md:py-2">
                     <Link
-                      className={`w-10 h-10 flex items-center justify-center relative rounded-lg transition-colors duration-200
+                      className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative rounded-lg transition-colors duration-200
                         ${
                           isActive
                             ? "text-blue-500 dark:text-blue-500"
@@ -60,7 +64,7 @@ const MainNav = () => {
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
-                      <Icon size={24} className="relative z-10" />
+                      <Icon className="relative z-10 w-[18px] h-[18px] md:w-6 md:h-6" />
                     </Link>
                   </li>
                 );
