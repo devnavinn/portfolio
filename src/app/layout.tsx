@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
   SITE_URL,
@@ -45,6 +46,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "Z3M8HcgOCeclDCTIEWtAFvjQ3ZIYKya2Ssod4pCvI2w",
+  },
 };
 
 export default function RootLayout({
@@ -61,6 +65,18 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-33GF4V475E"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-33GF4V475E');
+          `}
+        </Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
