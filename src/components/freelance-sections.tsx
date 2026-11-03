@@ -41,6 +41,7 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { DotPattern } from "@/components/magicui/dot-pattern";
 import { cn } from "@/lib/utils";
+import { openChat } from "@/components/chat-widget";
 
 const icons = {
   bot: BotIcon,
@@ -146,6 +147,20 @@ export const ServiceGrid = ({ limit }: { limit?: number }) => (
               <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                 {service.description}
               </p>
+              {service.icon === "bot" && (
+                <button
+                  type="button"
+                  onClick={openChat}
+                  className="group mt-4 inline-flex items-center gap-1.5 self-start text-sm font-medium text-sky-500"
+                >
+                  <SparklesIcon size={14} />
+                  Try the live demo
+                  <ArrowRightIcon
+                    size={14}
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                </button>
+              )}
             </div>
           </MagicCard>
         </BlurFade>
