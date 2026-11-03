@@ -1,35 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { v4 as uuidv4 } from "uuid";
 import ProjectCard from "@/components/project-card";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12 },
-  },
-};
+type Project = React.ComponentProps<typeof ProjectCard>["data"];
 
 const ProjectGrid = ({
   projects,
   className,
 }: {
-  projects: any[];
+  projects: Project[];
   className?: string;
 }) => {
   return (
-    <motion.div
-      className={className}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {projects?.map((d) => (
-        <ProjectCard key={uuidv4()} data={d} />
+    <div className={className}>
+      {projects.map((project, i) => (
+        <BlurFade key={project.title} delay={(i % 3) * 0.08} className="h-full">
+          <ProjectCard data={project} />
+        </BlurFade>
       ))}
-    </motion.div>
+    </div>
   );
 };
 

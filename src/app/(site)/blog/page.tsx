@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { db } from "@/lib/db";
+import { ArrowUpRightIcon } from "lucide-react";
 import { formatPostDate, readingTime } from "@/lib/utils";
+import PageHero from "@/components/page-hero";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { FinalCta } from "@/components/freelance-sections";
 
 export const dynamic = "force-dynamic";
 
@@ -22,53 +26,66 @@ const Blog = async () => {
   );
 
   return (
-    <div className="pt-8 pb-16 max-w-[700px]">
-      <header className="mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
-          Writing
-        </h1>
-        <p className="mt-2 text-slate-500 dark:text-slate-400">
-          Notes on software, tools, and things I&apos;m learning.
-        </p>
-      </header>
+    <div>
+      <PageHero
+        eyebrow="Blog"
+        title={
+          <>
+            Notes on building <span className="text-gradient">for the web</span>
+          </>
+        }
+        subtitle="Writing on software, AI, tools, and things I'm learning while shipping products."
+      />
 
-      {posts.length === 0 && (
-        <p className="text-slate-500 dark:text-slate-400">
-          No posts yet — check back soon.
-        </p>
-      )}
+      <div className="mx-auto max-w-3xl pb-16">
+        {posts.length === 0 && (
+          <p className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500 dark:border-white/15 dark:text-slate-400">
+            No posts yet — check back soon.
+          </p>
+        )}
 
-      <div className="space-y-10">
-        {years.map((year) => (
-          <section key={year}>
-            <h2 className="mb-2 text-sm font-medium text-slate-400 dark:text-slate-500">
-              {year}
-            </h2>
-            <ul className="divide-y divide-slate-200 dark:divide-slate-800 border-y border-slate-200 dark:border-slate-800">
-              {posts
-                .filter((p) => p.publishedAt!.getFullYear() === year)
-                .map((p) => (
-                  <li key={p.id}>
-                    <Link
-                      href={`/blog/${p.slug}`}
-                      className="group flex items-baseline justify-between gap-6 py-4"
-                    >
-                      <span className="font-medium text-slate-900 dark:text-slate-100 transition-colors group-hover:text-blue-500">
-                        {p.title}
-                      </span>
-                      <span className="shrink-0 text-sm text-slate-400 dark:text-slate-500">
-                        <span className="hidden sm:inline">
-                          {readingTime(p.content)} ·{" "}
-                        </span>
-                        {formatPostDate(p.publishedAt!)}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-            </ul>
-          </section>
-        ))}
+        <div className="space-y-12">
+          {years.map((year) => (
+            <section key={year}>
+              <h2 className="mb-4 flex items-center gap-3 text-sm font-semibold text-slate-500 dark:text-slate-400">
+                {year}
+                <span className="h-px grow bg-slate-200 dark:bg-white/10" />
+              </h2>
+              <ul className="space-y-3">
+                {posts
+                  .filter((p) => p.publishedAt!.getFullYear() === year)
+                  .map((p, i) => (
+                    <li key={p.id}>
+                      <BlurFade delay={Math.min(i, 6) * 0.04}>
+                        <Link
+                          href={`/blog/${p.slug}`}
+                          className="group flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-500/5 dark:border-white/10 dark:bg-white/[0.02] dark:hover:border-sky-500/40"
+                        >
+                          <div className="min-w-0">
+                            <p className="font-semibold transition-colors group-hover:text-sky-500">
+                              {p.title}
+                            </p>
+                            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                              {formatPostDate(p.publishedAt!)} ·{" "}
+                              {readingTime(p.content)}
+                            </p>
+                          </div>
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-all duration-300 group-hover:rotate-45 group-hover:border-sky-500 group-hover:bg-sky-500 group-hover:text-white dark:border-white/10">
+                            <ArrowUpRightIcon size={16} />
+                          </span>
+                        </Link>
+                      </BlurFade>
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          ))}
+        </div>
       </div>
+
+      <section className="pb-8">
+        <FinalCta />
+      </section>
     </div>
   );
 };

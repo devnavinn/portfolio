@@ -10,7 +10,14 @@ import {
   AUTHOR_NAME,
   personJsonLd,
 } from "@/lib/seo";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/styles/globals.css";
+
+const fontSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -64,7 +71,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body>
+      <body className={`${fontSans.variable} font-sans`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-33GF4V475E"
           strategy="afterInteractive"

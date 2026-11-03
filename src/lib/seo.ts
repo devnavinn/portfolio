@@ -3,15 +3,20 @@ export const SITE_NAME = "Navin Kumar";
 export const AUTHOR_NAME = "Navin Kumar";
 
 export const DEFAULT_TITLE =
-  "Navin Kumar — Full-Stack Developer & Freelance Web Developer";
+  "Navin Kumar — Freelance Full-Stack & AI Developer";
 
 export const DEFAULT_DESCRIPTION =
-  "Navin Kumar is a full-stack developer available for freelance work — Next.js and React web apps, e-commerce sites, APIs, redesigns, deployment, and ongoing support. Message on WhatsApp for a quote.";
+  "Hire Navin Kumar, a freelance full-stack & AI developer — AI chatbots, workflow automation, MVPs, e-commerce sites, and high-converting websites at fixed prices. Get a free quote on WhatsApp.";
 
 export const DEFAULT_KEYWORDS = [
   "Navin Kumar",
   "full-stack developer",
   "freelance web developer",
+  "freelance AI developer",
+  "AI chatbot development",
+  "AI automation freelancer",
+  "hire AI developer India",
+  "MVP development",
   "hire full stack developer",
   "Next.js developer for hire",
   "React developer freelance",
@@ -31,7 +36,7 @@ export const personJsonLd = {
   "@type": "Person",
   name: AUTHOR_NAME,
   url: SITE_URL,
-  jobTitle: "Full-Stack Developer",
+  jobTitle: "Freelance Full-Stack & AI Developer",
   image: `${SITE_URL}/me.jpg`,
   sameAs: [SOCIAL_LINKS.github, SOCIAL_LINKS.linkedin],
   knowsAbout: [

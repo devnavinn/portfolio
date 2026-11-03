@@ -2,15 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   GithubIcon,
   LinkedinIcon,
   MailIcon,
   SendIcon,
+  ArrowUpRightIcon,
 } from "lucide-react";
 import { getWhatsAppLink, WHATSAPP_NUMBER } from "@/constant";
 import WhatsAppIcon from "@/components/whatsapp-icon";
+import PageHero from "@/components/page-hero";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { cn } from "@/lib/utils";
 
 const contactLinks = [
   {
@@ -26,104 +31,158 @@ const contactLinks = [
     href: "mailto:codernavin@gmail.com",
   },
   {
-    icon: GithubIcon,
-    label: "GitHub",
-    value: "github.com/devnavinn",
-    href: "https://github.com/devnavinn",
-  },
-  {
     icon: LinkedinIcon,
     label: "LinkedIn",
     value: "linkedin.com/in/devnavin",
     href: "https://www.linkedin.com/in/devnavin/",
   },
+  {
+    icon: GithubIcon,
+    label: "GitHub",
+    value: "github.com/devnavinn",
+    href: "https://github.com/devnavinn",
+  },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0 },
-};
+const topics = [
+  { label: "AI chatbot", message: "Hi Navin, I'd like an AI chatbot for my business. " },
+  { label: "Automation", message: "Hi Navin, I'd like to automate part of my workflow with AI. " },
+  { label: "Website", message: "Hi Navin, I need a new website / landing page. " },
+  { label: "MVP / web app", message: "Hi Navin, I'd like to build an MVP / web app. " },
+  { label: "E-commerce", message: "Hi Navin, I need an e-commerce store. " },
+  { label: "Monthly retainer", message: "Hi Navin, I'm interested in the monthly developer retainer. " },
+];
+
+const nextSteps = [
+  "I reply on WhatsApp the same day",
+  "Quick call to understand your goals",
+  "Fixed quote and timeline within 24h",
+];
 
 const Contact = () => {
   const [message, setMessage] = useState("");
+  const [topic, setTopic] = useState<string | null>(null);
 
   const whatsappHref = getWhatsAppLink(
     message.trim() || "Hi Navin, I'd like to get in touch."
   );
 
+  const pickTopic = (t: (typeof topics)[number]) => {
+    setTopic(t.label);
+    setMessage(t.message);
+  };
+
   return (
-    <div className="pt-8 pb-16">
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={fadeUp}
-        transition={{ duration: 0.5 }}
-        className="max-w-[700px] mb-10"
-      >
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3">
-          {"Let's"}{" "}
-          <span className="inline-flex relative text-green-600 before:absolute before:inset-0 before:bg-green-200 dark:before:bg-green-500 before:opacity-10 before:-z-10 before:-rotate-1 before:translate-y-1/4">
-            talk
-          </span>
-        </h1>
-        <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400">
-          The fastest way to reach me is WhatsApp. Write a quick note below
-          and it{"'"}ll open a chat with your message ready to send.
-        </p>
-      </motion.div>
+    <div>
+      <PageHero
+        eyebrow="Contact"
+        title={
+          <>
+            Let{"'"}s <span className="text-gradient">talk</span> about your
+            project
+          </>
+        }
+        subtitle="The fastest way to reach me is WhatsApp. Pick a topic or write a quick note — it opens a chat with your message ready to send."
+      />
 
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={fadeUp}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 md:p-6 mb-10 max-w-[700px]"
-      >
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2"
-        >
-          What do you want to build?
-        </label>
-        <textarea
-          id="message"
-          rows={4}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Hi Navin, I'm looking for help with..."
-          className="w-full resize-none rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent px-4 py-3 text-sm outline-none focus:border-sky-500 dark:focus:border-sky-500 transition-colors"
-        />
-        <div className="flex justify-end mt-4">
-          <Link
-            target="_blank"
-            href={whatsappHref}
-            className="inline-flex items-center gap-2 rounded-full bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 font-medium transition-colors"
-          >
-            <SendIcon size={16} />
-            Send on WhatsApp
-          </Link>
-        </div>
-      </motion.div>
-
-      <div className="grid sm:grid-cols-2 gap-4 max-w-[700px]">
-        {contactLinks.map(({ icon: Icon, label, value, href }) => (
-          <Link
-            key={label}
-            target="_blank"
-            href={href}
-            className="flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
-          >
-            <div className="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center bg-sky-50 dark:bg-sky-500/10 text-sky-500">
-              <Icon size={18} />
+      <div className="mx-auto grid max-w-5xl gap-5 pb-8 lg:grid-cols-[1.5fr_1fr]">
+        <BlurFade className="h-full">
+          <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/[0.03] md:p-8 dark:border-white/10 dark:bg-white/[0.02]">
+            <BorderBeam size={140} duration={10} />
+            <p className="mb-3 text-sm font-semibold">
+              What can I help you with?
+            </p>
+            <div className="mb-6 flex flex-wrap gap-2">
+              {topics.map((t) => (
+                <button
+                  key={t.label}
+                  type="button"
+                  onClick={() => pickTopic(t)}
+                  className={cn(
+                    "rounded-full border px-3.5 py-1.5 text-sm transition-all",
+                    topic === t.label
+                      ? "border-sky-500 bg-sky-500 text-white shadow-md shadow-sky-500/25"
+                      : "border-slate-200 text-slate-600 hover:border-sky-500/50 hover:text-sky-500 dark:border-white/10 dark:text-slate-300"
+                  )}
+                >
+                  {t.label}
+                </button>
+              ))}
             </div>
-            <div className="min-w-0">
+
+            <label htmlFor="message" className="mb-2 block text-sm font-semibold">
+              Tell me about it
+            </label>
+            <textarea
+              id="message"
+              rows={6}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Hi Navin, I'm looking for help with..."
+              className="min-h-[160px] w-full grow resize-none rounded-2xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-sm outline-none transition-all placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 dark:border-white/10 dark:bg-white/[0.03] dark:focus:bg-white/[0.05]"
+            />
+            <div className="mt-5 flex flex-col-reverse items-center justify-between gap-4 sm:flex-row">
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                {label}
+                Opens WhatsApp — nothing is sent until you press send.
               </p>
-              <p className="font-medium truncate">{value}</p>
+              <Link target="_blank" href={whatsappHref} className="inline-flex">
+                <ShimmerButton className="text-sm">
+                  <SendIcon size={16} />
+                  Send on WhatsApp
+                </ShimmerButton>
+              </Link>
             </div>
-          </Link>
-        ))}
+          </div>
+        </BlurFade>
+
+        <div className="flex flex-col gap-3">
+          {contactLinks.map(({ icon: Icon, label, value, href }, i) => (
+            <BlurFade key={label} delay={0.05 + i * 0.05}>
+              <Link
+                target="_blank"
+                href={href}
+                className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-500/5 dark:border-white/10 dark:bg-white/[0.02]"
+              >
+                <div
+                  className={cn(
+                    "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl",
+                    label === "WhatsApp"
+                      ? "bg-green-500 text-white shadow-lg shadow-green-500/25"
+                      : "bg-slate-100 text-slate-700 dark:bg-white/5 dark:text-slate-200"
+                  )}
+                >
+                  <Icon size={18} />
+                </div>
+                <div className="min-w-0 grow">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {label}
+                  </p>
+                  <p className="truncate font-medium">{value}</p>
+                </div>
+                <ArrowUpRightIcon
+                  size={16}
+                  className="shrink-0 text-slate-400 transition-all group-hover:rotate-45 group-hover:text-sky-500"
+                />
+              </Link>
+            </BlurFade>
+          ))}
+
+          <BlurFade delay={0.3}>
+            <div className="rounded-2xl border border-green-500/25 bg-gradient-to-br from-green-500/[0.08] to-sky-500/[0.05] p-5">
+              <p className="mb-3 text-sm font-semibold">What happens next</p>
+              <ol className="space-y-2.5">
+                {nextSteps.map((step, i) => (
+                  <li key={step} className="flex items-center gap-3 text-sm">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold shadow-sm dark:bg-white/10">
+                      <span className="text-gradient">{i + 1}</span>
+                    </span>
+                    <span className="text-slate-600 dark:text-slate-300">{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </BlurFade>
+        </div>
       </div>
     </div>
   );

@@ -1,80 +1,60 @@
 "use client";
+
 import Link from "next/link";
-import React from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   HomeIcon,
-  BadgeInfoIcon,
-  BriefcaseBusinessIcon,
-  SquareMenuIcon,
-  PenLineIcon,
   SparklesIcon,
+  BriefcaseBusinessIcon,
+  PenLineIcon,
   MessageCircleIcon,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { isActivePath } from "./header";
+import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", icon: HomeIcon },
-  { href: "/about", icon: BadgeInfoIcon },
-  { href: "/services", icon: SparklesIcon },
-  { href: "/projects", icon: BriefcaseBusinessIcon },
-  { href: "/blog", icon: PenLineIcon },
-  { href: "/resume", icon: SquareMenuIcon },
-  { href: "/contact", icon: MessageCircleIcon },
+  { href: "/", label: "Home", icon: HomeIcon },
+  { href: "/services", label: "Services", icon: SparklesIcon },
+  { href: "/projects", label: "Work", icon: BriefcaseBusinessIcon },
+  { href: "/blog", label: "Blog", icon: PenLineIcon },
+  { href: "/contact", label: "Contact", icon: MessageCircleIcon },
 ];
 
+// Mobile-only bottom tab bar. Desktop navigation lives in the header.
 const MainNav = () => {
   const pathname = usePathname();
   return (
-    <div className="fixed w-full md:sticky bottom-0 md:top-0 h-16 md:w-24 shrink-0 md:h-screen overflow-y-auto no-scrollbar border-r dark:border-slate-800 z-50 backdrop-filter backdrop-blur-lg">
-      <div className="h-full w-full flex flex-row md:flex-col justify-between after:flex-1 after:mt-auto overflow-hidden">
-        <div className="hidden md:block md:flex-1">
-          <div className="flex justify-center my-4">
-            <Link href="/">
-              <Avatar>
-                <AvatarImage src="/me.jpg" />
-                <AvatarFallback>N</AvatarFallback>
-              </Avatar>
-            </Link>
-          </div>
-        </div>
-        <div className="flex-1 grow flex items-center w-full">
-          <nav className="w-full">
-            <ul className="md:space-y-4 flex flex-row items-center w-screen justify-evenly md:flex-col md:justify-start md:items-center md:w-24">
-              {links.map(({ href, icon: Icon }) => {
-                const isActive =
-                  pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
-                return (
-                  <li key={href} className="md:py-2">
-                    <Link
-                      className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative rounded-lg transition-colors duration-200
-                        ${
-                          isActive
-                            ? "text-blue-500 dark:text-blue-500"
-                            : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
-                        }
-                        `}
-                      href={href}
-                    >
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-active-pill"
-                          className="absolute inset-0 rounded-lg bg-blue-500/10"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-                      <Icon className="relative z-10 w-[18px] h-[18px] md:w-6 md:h-6" />
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </div>
-        <div />
-      </div>
-    </div>
+    <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200/80 bg-white/80 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl dark:border-white/10 dark:bg-[#07090f]/80 md:hidden print:hidden">
+      <ul className="flex h-16 items-center justify-around px-2">
+        {links.map(({ href, label, icon: Icon }) => {
+          const active = isActivePath(pathname, href);
+          return (
+            <li key={href} className="flex-1">
+              <Link
+                href={href}
+                className={cn(
+                  "relative mx-auto flex w-16 flex-col items-center gap-1 rounded-xl py-1.5 text-[11px] font-medium transition-colors",
+                  active
+                    ? "text-sky-500"
+                    : "text-slate-500 dark:text-slate-400"
+                )}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="tab-active-pill"
+                    className="absolute inset-0 rounded-xl bg-sky-500/10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <Icon className="relative h-5 w-5" />
+                <span className="relative">{label}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 };
 

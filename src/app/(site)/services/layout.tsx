@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Freelance Web Development Services",
+  title: "Freelance Web & AI Development Services",
   description:
-    "Hire Navin Kumar for freelance web development — full-stack apps, e-commerce sites, APIs, redesigns, deployment, SEO setup, and ongoing support. Message on WhatsApp for a quote.",
+    "Fixed-price freelance services: AI chatbots, AI workflow automation, MVPs, e-commerce sites, landing pages, and a monthly developer retainer. Get a free quote on WhatsApp.",
   keywords: [
     "freelance web developer",
+    "freelance AI developer",
+    "AI chatbot development",
+    "AI automation services",
+    "monthly developer retainer",
     "hire full stack developer",
     "Next.js developer for hire",
     "React developer freelance",
@@ -19,15 +23,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${SITE_URL}/services`,
-    title: "Freelance Web Development Services — Navin Kumar",
+    title: "Freelance Web & AI Development Services — Navin Kumar",
     description:
-      "Full-stack web apps, e-commerce sites, APIs, redesigns, deployment, and ongoing support — available for freelance projects.",
+      "AI chatbots, automations, MVPs, e-commerce, and websites at fixed prices, plus a monthly developer retainer.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Freelance Web Development Services — Navin Kumar",
+    title: "Freelance Web & AI Development Services — Navin Kumar",
     description:
-      "Full-stack web apps, e-commerce sites, APIs, redesigns, deployment, and ongoing support — available for freelance projects.",
+      "AI chatbots, automations, MVPs, e-commerce, and websites at fixed prices, plus a monthly developer retainer.",
   },
 };
 

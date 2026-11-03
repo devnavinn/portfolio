@@ -1,58 +1,62 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { MoveRightIcon } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { ArrowUpRightIcon } from "lucide-react";
 import { MagicCard } from "@/components/magic-card";
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
+type Project = {
+  icon: string;
+  title: string;
+  description: string;
+  url: string;
 };
 
-const ProjectCard = ({ data }: any) => {
+const ProjectCard = ({ data }: { data: Project }) => {
   const { icon, title, description, url } = data;
+  const [logoFailed, setLogoFailed] = useState(false);
+  const host = url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+
   return (
-    <motion.div
-      variants={cardVariants}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 24 }}
-    >
-      <Card className="odd:-rotate-1 even:rotate-1 rounded-xl relative hover:rotate-0 hover:shadow-lg transition-[transform,box-shadow] duration-700 hover:duration-150 ease-in-out">
-        <MagicCard className="rounded-xl">
-          <Link target="_blank" href={url}>
-            <CardHeader>
-              <div className="w-10 h-10">
+    <Link target="_blank" href={url} className="group block h-full">
+      <MagicCard className="h-full">
+        <div className="flex h-full flex-col p-6">
+          <div className="mb-5 flex items-start justify-between">
+            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-white/5">
+              {logoFailed ? (
+                <span className="text-gradient text-xl font-bold">
+                  {title.charAt(0)}
+                </span>
+              ) : (
                 <Image
-                  className="w-full h-full object-contain"
-                  width={50}
-                  height={50}
+                  className="h-full w-full object-contain"
+                  width={48}
+                  height={48}
                   src={icon}
                   alt={title}
+                  onError={() => setLogoFailed(true)}
                 />
-              </div>
-              <CardTitle>{title}</CardTitle>
-              <CardDescription className="line-clamp-4">
-                {description}
-              </CardDescription>
-            </CardHeader>
-            <div className="absolute bottom-2 right-5">
-              <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 20 }}>
-                <MoveRightIcon size={24} className="text-sky-500" />
-              </motion.div>
+              )}
             </div>
-          </Link>
-        </MagicCard>
-      </Card>
-    </motion.div>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-all duration-300 group-hover:rotate-45 group-hover:border-sky-500 group-hover:bg-sky-500 group-hover:text-white dark:border-white/10">
+              <ArrowUpRightIcon size={16} />
+            </span>
+          </div>
+          <h3 className="mb-2 text-lg font-semibold">{title}</h3>
+          <p className="mb-5 line-clamp-3 grow text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+            {description}
+          </p>
+          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+            </span>
+            Live · {host}
+          </div>
+        </div>
+      </MagicCard>
+    </Link>
   );
 };
 

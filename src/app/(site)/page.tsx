@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Navin Kumar — full-stack developer building React, Next.js, and Node.js products. Available for freelance web development, e-commerce sites, and API work.",
+    "Freelance full-stack & AI developer. AI chatbots, automations, MVPs, e-commerce, and high-converting websites at fixed prices. Get a free quote on WhatsApp.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
