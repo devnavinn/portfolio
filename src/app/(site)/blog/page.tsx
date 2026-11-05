@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes on software, web development, and the tools Navin Kumar uses building full-stack products.",
+    "Practical guides for founders on website, AI chatbot, and app costs in India, plus engineering notes from Navin Kumar, a full-stack and AI developer.",
   alternates: { canonical: "/blog" },
 };
 
@@ -34,7 +34,7 @@ const Blog = async () => {
             Notes on building <span className="text-gradient">for the web</span>
           </>
         }
-        subtitle="Writing on software, AI, tools, and things I'm learning while shipping products."
+        subtitle="Cost breakdowns and buying guides for founders, plus notes on software and AI from shipping real products."
       />
 
       <div className="mx-auto max-w-3xl pb-16">
