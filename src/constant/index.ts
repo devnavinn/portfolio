@@ -3,7 +3,18 @@ const WHATSAPP_NUMBER = "918581085293";
 const getWhatsAppLink = (message: string) =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-const projects = [
+type Project = {
+    icon: string;
+    title: string;
+    description: string;
+    url: string;
+    tag: string[];
+    // Real, verifiable outcomes shown as chips on the card (and fed to the
+    // chat assistant), e.g. "1.2s LCP", "500+ SKUs", "2k monthly users".
+    metrics?: string[];
+};
+
+const projects: Project[] = [
     {
         icon: '/projects/x.png',
         title: 'E-commerce Platform',

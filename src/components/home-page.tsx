@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRightIcon,
+  SparklesIcon,
   ZapIcon,
   ShieldCheckIcon,
   ClockIcon,
@@ -27,6 +28,7 @@ import { DotPattern } from "@/components/magicui/dot-pattern";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { Marquee } from "@/components/magicui/marquee";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
+import { openChat } from "@/components/chat-widget";
 
 const rotatingWords = [
   "AI chatbots",
@@ -134,6 +136,18 @@ export default function HomePage() {
                 See pricing
               </Link>
             </div>
+            <button
+              type="button"
+              onClick={openChat}
+              className="group mx-auto mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sky-500"
+            >
+              <SparklesIcon size={14} />
+              Try my AI assistant live — the same kind I build for clients
+              <ArrowRightIcon
+                size={14}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
+            </button>
           </BlurFade>
 
           <BlurFade inView={false} delay={0.4}>

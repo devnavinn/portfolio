@@ -11,10 +11,11 @@ type Project = {
   title: string;
   description: string;
   url: string;
+  metrics?: readonly string[];
 };
 
 const ProjectCard = ({ data }: { data: Project }) => {
-  const { icon, title, description, url } = data;
+  const { icon, title, description, url, metrics } = data;
   const [logoFailed, setLogoFailed] = useState(false);
   const host = url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
@@ -47,6 +48,18 @@ const ProjectCard = ({ data }: { data: Project }) => {
           <p className="mb-5 line-clamp-3 grow text-sm leading-relaxed text-slate-500 dark:text-slate-400">
             {description}
           </p>
+          {metrics && metrics.length > 0 && (
+            <ul className="mb-5 flex flex-wrap gap-2">
+              {metrics.map((metric) => (
+                <li
+                  key={metric}
+                  className="rounded-full border border-sky-500/25 bg-sky-500/10 px-2.5 py-1 text-xs font-medium text-sky-700 dark:text-sky-300"
+                >
+                  {metric}
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />

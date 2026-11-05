@@ -95,6 +95,7 @@ const packages = [
     ],
     cta: "Hi Navin, I'm interested in the AI Build package.",
     featured: true,
+    demo: true,
   },
   {
     name: "Product / MVP",

@@ -227,6 +227,20 @@ export const Packages = () => (
                   <Feature key={feature}>{feature}</Feature>
                 ))}
               </ul>
+              {"demo" in pkg && pkg.demo && (
+                <button
+                  type="button"
+                  onClick={openChat}
+                  className="group mb-3 inline-flex items-center justify-center gap-1.5 text-sm font-medium text-sky-500"
+                >
+                  <SparklesIcon size={14} />
+                  Try a live AI assistant first
+                  <ArrowRightIcon
+                    size={14}
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                </button>
+              )}
               <WhatsAppButton
                 message={pkg.cta}
                 variant={featured ? "primary" : "outline"}

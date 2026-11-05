@@ -34,7 +34,10 @@ const knowledgeBase = [
   ...reasons.map((r) => `- ${r.title}: ${r.description}`),
   "",
   "## Past work (live products)",
-  ...projects.map((p) => `- ${p.title} (${p.url}): ${p.description}`),
+  ...projects.map(
+    (p) =>
+      `- ${p.title} (${p.url}): ${p.description}${p.metrics?.length ? ` Results: ${p.metrics.join("; ")}.` : ""}`
+  ),
   "",
   "## FAQ",
   ...faqs.map((f) => `Q: ${f.question}\nA: ${f.answer}`),
